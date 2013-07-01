@@ -22,6 +22,9 @@
 
 <br />
 
-<div id="surveyMonkeyInfo"><div><script src="https://www.research.net/jsEmbed.aspx?sm=fsl2MbczUG8Unrv05bIZ0A_3d_3d"> </script></div>
-
+<% if @embedded_ssl %>
+  <div id="surveyMonkeyInfo"><div><script src="https://www.research.net/jsEmbed.aspx?sm=fsl2MbczUG8Unrv05bIZ0A_3d_3d"> </script></div>
+<% else %>
+  <div id="surveyMonkeyInfo"><div><script src="http://www.research.net/jsEmbed.aspx?sm=fsl2MbczUG8Unrv05bIZ0A_3d_3d"> </script></div>
+<% end %>
 <%= link_to 'New My survey', new_my_survey_path %>
