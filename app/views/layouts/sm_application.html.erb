@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to SurveyMonkey</title>
+  <%= stylesheet_link_tag    "sm_application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+  <%= favicon_link_tag 'favicon1.ico' %>
+</head>
+<body>
+
+<%= render 'layouts/sm_header' %>
+
+<%= yield %>
+
+<%= render 'layouts/sm_footer' %>
+</body>
+</html>

@@ -1,0 +1,96 @@
+
+body {
+    margin: 0px;
+}
+
+.center {
+    margin: 0px auto;
+    /*margin-left:auto;*/
+    /*margin-right:auto;*/
+}
+
+.base-header {
+    /*height: 82px;*/
+    background-color: #333333;
+}
+
+.auth-header {
+    height: 48px;
+    background-color: #4B4A3C;
+
+}
+
+.inner-header {
+    width: 1000px;
+    /*padding: 0px 100px;*/
+}
+
+.inner-header-top {
+}
+
+.logo {
+    width: 400px;
+    height: 85px;
+    background-image: url("<%= asset_path 'sm/sm_logo_white.png' %>") ;
+    background-repeat: no-repeat;
+}
+
+.float-container {
+    position: relative;
+}
+
+.float-container .float-right {
+    /* --- clearfix --- */
+    position: relative;
+
+    /* -- size -- */
+    width: 46%;
+    padding: 1%;
+
+    border: solid 1px #000;
+
+    float: right;
+}
+
+.float-container .float-left {
+    /* --- clearfix --- */
+    position: relative;
+
+    /* -- size -- */
+    width: 46%;
+    padding: 1%;
+
+    border: solid 1px #000;
+
+    float: left;
+}
+
+a.button {
+    background: transparent url("<%= asset_path 'sm/bg_button_a.gif' %>") no-repeat scroll top right;
+    color: #444;
+    display: block;
+    float: left;
+    font: normal 12px arial, sans-serif;
+    height: 24px;
+    margin-right: 6px;
+    padding-right: 18px; /* sliding doors padding */
+    text-decoration: none;
+}
+
+a.button span {
+    background: transparent url("<%= asset_path 'sm/bg_button_span.gif' %>") no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 5px 0 5px 18px;
+}
+
+a.button:active {
+    background-position: bottom right;
+    color: #000;
+    outline: none; /* hide dotted outline in Firefox */
+}
+
+a.button:active span {
+    background-position: bottom left;
+    padding: 6px 0 4px 18px; /* push text down 1px */
+}
