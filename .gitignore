@@ -11,5 +11,13 @@
 /db/*.sqlite3
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
+*.log
 /tmp
+/doc
+/.idea/
+/.yardoc
+bundler_stubs/
+*~
+*#
+.#*
+.DS_Store
