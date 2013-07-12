@@ -23,8 +23,14 @@
 <br />
 
 <% if @embedded_ssl %>
-  <div id="surveyMonkeyInfo"><div><script src="https://www.research.net/jsEmbed.aspx?sm=fsl2MbczUG8Unrv05bIZ0A_3d_3d"> </script></div>
+  <div id="surveyMonkeyInfo"><div><script src="https://www.research.net/jsEmbed.aspx?sm=fsl2MbczUG8Unrv05bIZ0A_3d_3d"> </script></div></div>
 <% else %>
-  <div id="surveyMonkeyInfo"><div><script src="http://www.research.net/jsEmbed.aspx?sm=fsl2MbczUG8Unrv05bIZ0A_3d_3d"> </script></div>
+  <div id="surveyMonkeyInfo"><div><script src="http://www.research.net/jsEmbed.aspx?sm=fsl2MbczUG8Unrv05bIZ0A_3d_3d"> </script></div></div>
 <% end %>
+
 <%= link_to 'New My survey', new_my_survey_path %>
+
+<footer>
+<%= debug params if Rails.env.development? or params.has_key?(:debug) %>
+<%= debug request.headers if Rails.env.development? or params.has_key?(:debug) %>
+</footer>
