@@ -7,6 +7,8 @@ class MySurveysController < SmApplicationController
     @my_surveys = nil # MySurvey.all
 
     @embedded_ssl = ! params.key?(:non_ssl)
+    @embedded_relative = params.key?(:relative)
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @my_surveys }
