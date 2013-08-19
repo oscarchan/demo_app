@@ -6,6 +6,7 @@ class MySurveysController < SmApplicationController
   def index
     @my_surveys = nil # MySurvey.all
 
+    @basic_user = params.key?(:basic_user)
     @embedded_ssl = ! params.key?(:non_ssl)
     @embedded_relative = params.key?(:relative)
 
