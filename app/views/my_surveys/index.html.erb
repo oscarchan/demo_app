@@ -22,12 +22,22 @@
 
 <br />
 
-<% if @embedded_relative %>
-  <div id="surveyMonkeyInfo"><div><script src="//www.research.net/jsEmbed.aspx?sm=fsl2MbczUG8Unrv05bIZ0A_3d_3d"> </script></div></div>
-<% elsif @embedded_ssl %>
-  <div id="surveyMonkeyInfo"><div><script src="https://www.research.net/jsEmbed.aspx?sm=fsl2MbczUG8Unrv05bIZ0A_3d_3d"> </script></div></div>
-<% else  %>
-  <div id="surveyMonkeyInfo"><div><script src="http://www.research.net/jsEmbed.aspx?sm=fsl2MbczUG8Unrv05bIZ0A_3d_3d"> </script></div></div>
+<% if @basic_user %>
+  <% if @embedded_relative %>
+    <div id="surveyMonkeyInfo"><div><script src="//www.monkeytest1.com/jsEmbed.aspx?sm=SHzZU5gW_2fCnLPwfZw5tNdA_3d_3d"> </script></div>Create your free online surveys with <a href="http://www.monkeytest1.com/">SurveyMonkey</a> , the world's leading questionnaire tool.</div>
+  <% elsif @embedded_ssl %>
+    <div id="surveyMonkeyInfo"><div><script src="https//www.monkeytest1.com/jsEmbed.aspx?sm=SHzZU5gW_2fCnLPwfZw5tNdA_3d_3d"> </script></div>Create your free online surveys with <a href="http://www.monkeytest1.com/">SurveyMonkey</a> , the world's leading questionnaire tool.</div>
+  <% else  %>
+    <div id="surveyMonkeyInfo"><div><script src="http//www.monkeytest1.com/jsEmbed.aspx?sm=SHzZU5gW_2fCnLPwfZw5tNdA_3d_3d"> </script></div>Create your free online surveys with <a href="http://www.monkeytest1.com/">SurveyMonkey</a> , the world's leading questionnaire tool.</div>
+  <% end %>
+<% else %>
+  <% if @embedded_relative %>
+    <div id="surveyMonkeyInfo"><div><script src="//www.research.net/jsEmbed.aspx?sm=fsl2MbczUG8Unrv05bIZ0A_3d_3d"> </script></div></div>
+  <% elsif @embedded_ssl %>
+    <div id="surveyMonkeyInfo"><div><script src="https://www.research.net/jsEmbed.aspx?sm=fsl2MbczUG8Unrv05bIZ0A_3d_3d"> </script></div></div>
+  <% else  %>
+    <div id="surveyMonkeyInfo"><div><script src="http://www.research.net/jsEmbed.aspx?sm=fsl2MbczUG8Unrv05bIZ0A_3d_3d"> </script></div></div>
+  <% end %>
 <% end %>
 
 <%= link_to 'New My survey', new_my_survey_path %>

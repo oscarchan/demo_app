@@ -1,5 +1,5 @@
 class MySurveysController < SmApplicationController
-  force_ssl
+  # force_ssl
 
   # GET /my_surveys
   # GET /my_surveys.json
