@@ -7,8 +7,7 @@
     <th></th>
   </tr>
 
-<%
-=begin %>
+<% if false %>
 <% @my_surveys.each do |my_survey| %>
   <tr>
     <td><%= link_to 'Show', my_survey %></td>
@@ -16,8 +15,7 @@
     <td><%= link_to 'Destroy', my_survey, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
-<%
-=end %>
+<% end %>
 </table>
 
 <br />
