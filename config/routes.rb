@@ -5,6 +5,8 @@ DemoApp::Application.routes.draw do
 
   resources :my_surveys
 
+  resources :csrf, only: [:index]
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
