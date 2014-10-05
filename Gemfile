@@ -25,6 +25,8 @@ gem 'jbuilder', '1.0.2'
 gem 'underscore-rails'
 
 gem 'protected_attributes'
+gem 'jquery-form-rails', '~> 1.0.1'
+gem 'simple_form'
 
 
 # To use ActiveModel has_secure_password
