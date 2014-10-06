@@ -3,8 +3,24 @@
 $(function(){
     $.fn.ajaxSubmit.debug = true;
 
+    function beforeFunction(formData, jqForm, options) {
+        var queryString = $.param(formData);
 
-    $('#new_file_upload_form').ajaxForm({
+        console.log('About to submit: ' + queryString);
+    }
+
+    function successFunction(response, status, xhr, $form) {
+        console.log('success: status=' + status + ';' + ' response=' + response);
+
+
+        $('#upload_file_form_output').append('<pre>' + response.content + '</pre>')
+    }
+
+    function completeFunction(xhr, status) {
+        console.log('completed: status=' + status + ';' + ' xhr=' + xhr);
+    }
+
+    $('#ajaxForm-form').ajaxForm({
         // target: "#upload_file_form_output",
         dataType: 'json',
         // other available options:
@@ -17,17 +33,35 @@ $(function(){
         // $.ajax options can be used here too, for example:
         //timeout:   3000
 
-        beforeSubmit: function(formData, jqForm, options) {
-            var queryString = $.param(formData);
+        beforeSubmit: beforeFunction,
 
-            console.log('About to submit: ' + queryString);
-        },
-
-        success: function(response, status, xhr, $form) {
-            console.log('status=' + status + ';' + ' response=' + response);
-
-
-            $('#upload_file_form_output').append('<pre>' + response.content + '</pre>')
-        }
+        success: successFunction
     });
+
+    $('#ajaxSubmit-form').submit(function() {
+        $(this).ajaxSubmit({
+            // target: "#upload_file_form_output",
+            dataType: 'json',
+
+            beforeSubmit: beforeFunction,
+
+            success: successFunction,
+
+            complete: completeFunction
+        });
+
+        return false;
+    });
+
+    var alertFallback = true;
+    if (typeof console === "undefined" || typeof console.log === "undefined") {
+        console = {};
+        if (alertFallback) {
+            console.log = function(msg) {
+                alert(msg);
+            };
+        } else {
+            console.log = function() {};
+        }
+    }
 });

@@ -1,7 +1,19 @@
 <%= simple_form_for(@file_upload_form, url: file_upload_path,
-                    html: { multipart: true}  ) do |f| %>
+                    html: { id: "ajaxForm-form", multipart: true}  ) do |f| %>
   <%= f.input :file, as: :file %>
-  <%= f.button :submit, id: "submit-plain", name: "submit_method", value: "plain" %>
-  <%= f.button :submit, id: "submit-ajaxForm", name: "submit_method", value: "ajaxForm" %>
+<!--
   <%= f.button :submit, id: "submit-ajaxSubmit", name: "submit_method", value: "ajaxSubmit" %>
+-->
+  <%= f.button :submit, id: "submit-ajaxForm", name: "submit_method", value: "ajaxForm" %>
+<% end %>
+
+<%= simple_form_for(@file_upload_form, url: file_upload_path,
+                    html: { id: "ajaxSubmit-form", multipart: true}  ) do |f| %>
+  <%= f.input :file, as: :file %>
+  <%= f.button :submit, id: "submit-ajaxSubmit", name: "submit_method", value: "ajaxSubmit" %>
+<% end %>
+
+
+<%= form_tag(file_upload_path, id: "ajaxSubmit-form2", method: :post, multipart: true) do %>
+  <%= submit_tag 'ajaxSubmit' %>
 <% end %>
