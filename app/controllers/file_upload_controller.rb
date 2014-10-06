@@ -21,17 +21,10 @@ class FileUploadController < ApplicationController
 
     @file_upload_form.submit(params)
 
-
-
-
-=begin
-    if @jquery_form.save
-      redirect_to @jquery_form, notice: 'Jquery form was successfully created.'
-    else
-      render action: 'new'
+    respond_to do |format|
+      format.html { render action: 'show' }
+      format.json { render json: { content: @file_upload_form.file_content }, status: :created }
     end
-=end
-    render action: 'show'
   end
 
   # PATCH/PUT /file_upload/1

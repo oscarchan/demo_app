@@ -3,6 +3,8 @@ class FileUploadForm
 
   attr_accessor :file
 
+  attr_accessor :ajax_form, :ajax_submit
+
   def self.model_name
     ActiveModel::Name.new(self, nil, "FileUploadForm")
   end
@@ -14,7 +16,9 @@ class FileUploadForm
   def submit(params)
     file = params[:file_upload_form][:file]
 
-    @file_content = file.read #.force_encoding('ISO-8859-1')
+    if file.respond_to?(:read)
+      @file_content = file.read #.force_encoding('ISO-8859-1')
+    end
 
     Rails.logger.info("params: #{@file_content}")
   end
