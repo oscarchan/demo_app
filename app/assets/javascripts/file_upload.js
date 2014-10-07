@@ -1,7 +1,7 @@
 //= require jquery.form
 
 $(function(){
-    $.fn.ajaxSubmit.debug = true;
+    $.fn.ajaxSubmit.debug = false;
 
     function beforeFunction(formData, jqForm, options) {
         var queryString = $.param(formData);
@@ -13,7 +13,7 @@ $(function(){
         console.log('success: status=' + status + ';' + ' response=' + response);
 
 
-        $('#upload_file_form_output').append('<pre>' + response.content + '</pre>')
+        $('#upload_file_form_output').append('<pre>' + JSON.stringify(response) + '</pre>')
     }
 
     function completeFunction(xhr, status) {
@@ -42,6 +42,7 @@ $(function(){
         $(this).ajaxSubmit({
             // target: "#upload_file_form_output",
             dataType: 'json',
+            data: {"abc": "123"},
 
             beforeSubmit: beforeFunction,
 

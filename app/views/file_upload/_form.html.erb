@@ -1,9 +1,6 @@
 <%= simple_form_for(@file_upload_form, url: file_upload_path,
                     html: { id: "ajaxForm-form", multipart: true}  ) do |f| %>
   <%= f.input :file, as: :file %>
-<!--
-  <%= f.button :submit, id: "submit-ajaxSubmit", name: "submit_method", value: "ajaxSubmit" %>
--->
   <%= f.button :submit, id: "submit-ajaxForm", name: "submit_method", value: "ajaxForm" %>
 <% end %>
 
