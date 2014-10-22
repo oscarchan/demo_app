@@ -24,8 +24,8 @@ class FileUploadController < ApplicationController
     respond_to do |format|
       format.html {
         if request.headers['X-Requested-With'] == 'XMLHttpRequest'
-          render json: { content: 'abc' }
-
+          # render json: { content: 'abc' }
+          redirect_to file_upload_path
         else
           data = '{"status": 0, "data": {"duplicates": [], "invalids": [], "counts": {"total_input_contacts": 3, "max": 2000000, "added_to_list": {}, "input_duplicate": 0, "invalid": 0, "duplicate": 3, "inactive": 0, "past_max": 0, "added_to_book": 0, "import_attempt": 3}, "import_session_id": 72859, "input_duplicates": []}}'
           render inline: "<textarea>#{data}</textarea>", content_type: 'text/html'

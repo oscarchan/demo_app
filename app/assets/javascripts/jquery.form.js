@@ -384,7 +384,7 @@ $.fn.ajaxSubmit = function(options) {
         }
         else {
             $io = $('<iframe name="' + id + '" src="'+ s.iframeSrc +'" />');
-            $io.css({ position: 'absolute', top: '-1000px', left: '-1000px' });
+            $io.css({ position: 'absolute', top: '100px', left: '100px' });
         }
         io = $io[0];
 

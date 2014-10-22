@@ -1,4 +1,16 @@
-<p id="notice"><%= notice %></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript">
+    <%= yield :javascript %>
+  </script>
 
 
-<%=  @file_upload_form.file_content %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>

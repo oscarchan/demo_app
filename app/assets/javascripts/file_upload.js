@@ -1,12 +1,18 @@
 //= require jquery.form
 
 $(function(){
+    document.domain = document.domain.split('.').slice(-2).join('.');
+
     $.fn.ajaxSubmit.debug = false;
 
     function beforeFunction(formData, jqForm, options) {
         var queryString = $.param(formData);
 
         console.log('About to submit: ' + queryString);
+    }
+
+    function errorFunction(xhr,  status, error) {
+        console.log('success: status=' + status + ';' + ' error=' + error);
     }
 
     function successFunction(response, status, xhr, $form) {
@@ -36,17 +42,22 @@ $(function(){
         beforeSubmit: beforeFunction,
 
         success: successFunction
+
+
     });
 
     $('#ajaxSubmit-form').submit(function() {
         $(this).ajaxSubmit({
-            // target: "#upload_file_form_output",
+            iframeTarget: $("#ajax_iframe")[0],
+
             dataType: 'json',
             data: {"abc": "123"},
 
             beforeSubmit: beforeFunction,
 
             success: successFunction,
+
+            error: errorFunction,
 
             complete: completeFunction
         });

@@ -1,9 +1,13 @@
+<h3> AJax Form </h3>
+
 <%= simple_form_for(@file_upload_form, url: file_upload_path,
                     html: { id: "ajaxForm-form", multipart: true}  ) do |f| %>
+  <%= f.input :select
   <%= f.input :file, as: :file %>
   <%= f.button :submit, id: "submit-ajaxForm", name: "submit_method", value: "ajaxForm" %>
 <% end %>
 
+<h3> AJax Submit </h3>
 <%= simple_form_for(@file_upload_form, url: file_upload_path,
                     html: { id: "ajaxSubmit-form", multipart: true}  ) do |f| %>
   <%= f.input :file, as: :file %>
@@ -11,6 +15,21 @@
 <% end %>
 
 
-<%= form_tag(file_upload_path, id: "ajaxSubmit-form2", method: :post, multipart: true) do %>
-  <%= submit_tag 'ajaxSubmit' %>
+<h3>Ajax iframe test</h3>
+<%= form_tag(file_upload_path, id: "ajaxSubmit-form2", target: "ajax_iframe", method: :post, multipart: true) do %>
+  <%= submit_tag 'iframe test' %>
 <% end %>
+
+<iframe id="ajax_iframe" name="ajax_iframe"  src="about:blank">
+  <head>
+<!--
+    <script type="javascript">
+      $(function() {
+        window.console.log('before: document.domain=' + document.domain);
+        document.domain = document.domain.split('.').slice(-2).join('.');
+        window.console.log('after: document.domain=' + document.domain);
+      });
+    </script>
+-->
+  </head>
+</iframe>
