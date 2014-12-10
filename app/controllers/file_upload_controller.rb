@@ -21,7 +21,7 @@ class FileUploadController < ApplicationController
 
     @file_upload_form.submit(params)
 
-    respond_to do |format|
+=begin
       format.html {
         if request.headers['X-Requested-With'] == 'XMLHttpRequest'
           # render json: { content: 'abc' }
@@ -33,14 +33,13 @@ class FileUploadController < ApplicationController
         # render action: 'show'
       }
       format.json {
-        if request.headers['X-Requested-With'] == 'XMLHttpRequest'
-          render json: { content: @file_upload_form.file_content }
+=end
+      if request.headers['X-Requested-With'] == 'XMLHttpRequest'
+        render json: { content: @file_upload_form.file_content }
 
-        else
-          render inline: "<textarea>{\"content\": \"#{@file_upload_form.file_content}\"}</textarea>", content_type: 'text/html'
-        end
-      }
-    end
+      else
+        render inline: "<textarea>{\"content\": \"#{@file_upload_form.file_content}\"}</textarea>", content_type: 'text/html'
+      end
   end
 
   # PATCH/PUT /file_upload/1

@@ -12,7 +12,7 @@ DemoApp::Application.routes.draw do
   get :file_upload, to: 'file_upload#new'
   resources :file_upload
 
-  # The priority is based upon order of creation:
+    # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:

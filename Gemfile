@@ -34,6 +34,7 @@ end
 gem 'protected_attributes'
 #gem 'jquery-form-rails', '~> 1.0.1'
 gem 'simple_form'
+gem 'jquery.fileupload-rails'
 
 gem 'thin'
 

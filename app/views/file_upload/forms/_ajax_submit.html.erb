@@ -1,0 +1,7 @@
+
+<h3> AJax Submit </h3>
+<%= simple_form_for(@file_upload_form, url: file_upload_path,
+                    html: { id: "ajaxSubmit-form", multipart: true}  ) do |f| %>
+  <%= f.file_field :file %>
+  <%= f.button :submit, id: "submit-ajaxSubmit", name: "submit_method", value: "ajaxSubmit" %>
+<% end %>

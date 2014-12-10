@@ -1,35 +1,13 @@
-<h3> AJax Form </h3>
 
-<%= simple_form_for(@file_upload_form, url: file_upload_path,
-                    html: { id: "ajaxForm-form", multipart: true}  ) do |f| %>
-  <%= f.input :select
-  <%= f.input :file, as: :file %>
-  <%= f.button :submit, id: "submit-ajaxForm", name: "submit_method", value: "ajaxForm" %>
-<% end %>
+<%= render partial: "file_upload/forms/#{@file_upload_form.upload_type}", locals: { file_upload_form: @file_upload_form } %>
 
-<h3> AJax Submit </h3>
-<%= simple_form_for(@file_upload_form, url: file_upload_path,
-                    html: { id: "ajaxSubmit-form", multipart: true}  ) do |f| %>
-  <%= f.input :file, as: :file %>
-  <%= f.button :submit, id: "submit-ajaxSubmit", name: "submit_method", value: "ajaxSubmit" %>
-<% end %>
+<section>
+  <%
+     FileUploadForm::UploadType.constants.each do |constant_key|
+     upload_type = FileUploadForm::UploadType.const_get(constant_key)
+  %>
 
+    <%= link_to "JQuery Form #{upload_type}", new_file_upload_path(upload_type: upload_type)%>
+  <% end %>
+</section>
 
-<h3>Ajax iframe test</h3>
-<%= form_tag(file_upload_path, id: "ajaxSubmit-form2", target: "ajax_iframe", method: :post, multipart: true) do %>
-  <%= submit_tag 'iframe test' %>
-<% end %>
-
-<iframe id="ajax_iframe" name="ajax_iframe"  src="about:blank">
-  <head>
-<!--
-    <script type="javascript">
-      $(function() {
-        window.console.log('before: document.domain=' + document.domain);
-        document.domain = document.domain.split('.').slice(-2).join('.');
-        window.console.log('after: document.domain=' + document.domain);
-      });
-    </script>
--->
-  </head>
-</iframe>
