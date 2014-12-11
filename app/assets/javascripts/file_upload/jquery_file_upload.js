@@ -9,15 +9,35 @@ function successFunction(event, data) {
 }
 
 $(function(){
-    $('#jquery_file_upload-id').fileupload({
+    // remove no file chosen
+    var form = $("#jquery_file_upload-id");
+
+    // no file chosen solution does not work with jquery out of the box
+/*
+    form.find(".file_input .button")
+        .click(function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+
+            form.find("input:file").trigger('click');
+        });
+*/
+
+    form.fileupload({
         dataType: 'json',
         autoUpload: false,
         done: successFunction,
         add: function(e, data) {
             var self = this;
 
-            $('#jquery_file_upload-id input[type=submit]')
-                .click(function(e) {
+            console.log("data.files=" + data.files);
+
+            // update the file name
+            form.find(".selected_file").text(data.files[0].name);
+
+            form.find("input:submit")
+                .off('click')
+                .one('click', function(e) {
                     e.stopPropagation();
                     e.preventDefault();
 
@@ -27,7 +47,8 @@ $(function(){
 
             $.blueimp.fileupload.prototype
                 .options.add.call(self, e, data);
-        }
+        },
+
     });
 
 });

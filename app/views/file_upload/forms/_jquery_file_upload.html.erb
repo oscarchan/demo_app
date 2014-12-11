@@ -6,6 +6,11 @@
 <%= simple_form_for(file_upload_form, url: file_upload_path,
                     html: { id: "#{file_upload_form.upload_type}-id", multipart: true}  ) do |f| %>
   <%= f.hidden_field :upload_type %>
-  <%= f.file_field :file, accept: 'text/csv' %>
+
+  <div class="file_input">
+    <%= f.file_field :file, accept: 'text/csv' %>
+    <span class="selected_file"></span>
+  </div>
+
   <%= f.button :submit, "submit" %>
 <% end %>
