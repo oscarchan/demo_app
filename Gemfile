@@ -23,6 +23,7 @@ group :development, :test do
   gem 'byebug', '3.4.0'
   gem 'web-console', '2.0.0.beta3'
   gem 'spring', '1.1.3'
+  gem 'thin'
 end
 
 group :production do
@@ -36,7 +37,6 @@ gem 'protected_attributes'
 gem 'simple_form'
 gem 'jquery.fileupload-rails'
 
-gem 'thin'
 
 
 # To use ActiveModel has_secure_password
