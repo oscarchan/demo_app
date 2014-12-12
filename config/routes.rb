@@ -10,7 +10,11 @@ DemoApp::Application.routes.draw do
   resources :csrf, only: [:index]
 
   get :file_upload, to: 'file_upload#new'
+  get 'file_upload/result', to: 'file_upload#result'
+
+  # need to the last of file_upload since /file_upload/{xxx} will match any sub path as xxx
   resources :file_upload
+
 
     # The priority is based upon order of creation:
   # first created -> highest priority.

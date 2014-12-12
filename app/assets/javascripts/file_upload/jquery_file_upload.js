@@ -8,6 +8,15 @@ function successFunction(event, data) {
     }
 }
 
+function failFunction(event, data) {
+    console.log('failed: status=' + event + ';' + ' response=' + data.result);
+
+    if(data.jqXHR) {
+        $('#upload_file_output').append('failed');
+    }
+}
+
+
 $(function(){
     // remove no file chosen
     var form = $("#jquery_file_upload-id");
@@ -24,9 +33,13 @@ $(function(){
 */
 
     form.fileupload({
-        dataType: 'json',
+        dataType: 'text',
         autoUpload: false,
+
+        // force iframe transport for testing
+        forceIframeTransport: true,
         done: successFunction,
+        fail: failFunction,
         add: function(e, data) {
             var self = this;
 
@@ -47,8 +60,18 @@ $(function(){
 
             $.blueimp.fileupload.prototype
                 .options.add.call(self, e, data);
-        },
+        }
 
     });
+
+    /*
+    var redirect_url = window.location.host + '/file_upload/result.json?%s';
+    form.fileupload(
+        'option',
+        'redirect',
+        redirect_url
+    );
+    */
+
 
 });

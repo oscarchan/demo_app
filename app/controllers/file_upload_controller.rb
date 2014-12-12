@@ -18,28 +18,23 @@ class FileUploadController < ApplicationController
   # POST /file_upload
   def create
     @file_upload_form = FileUploadForm.new(params[:file_upload])
-
+    form_auth_token = params[:authenticity_token]
     @file_upload_form.submit(params)
 
-=begin
-      format.html {
-        if request.headers['X-Requested-With'] == 'XMLHttpRequest'
-          # render json: { content: 'abc' }
-          redirect_to file_upload_path
-        else
-          data = '{"status": 0, "data": {"duplicates": [], "invalids": [], "counts": {"total_input_contacts": 3, "max": 2000000, "added_to_list": {}, "input_duplicate": 0, "invalid": 0, "duplicate": 3, "inactive": 0, "past_max": 0, "added_to_book": 0, "import_attempt": 3}, "import_session_id": 72859, "input_duplicates": []}}'
-          render inline: "<textarea>#{data}</textarea>", content_type: 'text/html'
-        end
-        # render action: 'show'
-      }
-      format.json {
-=end
-      if request.headers['X-Requested-With'] == 'XMLHttpRequest'
-        render json: { content: @file_upload_form.file_content }
 
-      else
-        render inline: "<textarea>{\"content\": \"#{@file_upload_form.file_content}\"}</textarea>", content_type: 'text/html'
-      end
+    result = { content: @file_upload_form.file_content }
+    session[:last_file_upload_result] = result
+    if request.headers['X-Requested-With'] == 'XMLHttpRequest'
+        render json: result
+    else
+      render action: 'create'
+    end
+  end
+
+  def result
+    logger.info "session = #{session[:last_file_upload_result]}"
+    render json: session[:last_file_upload_result]
+
   end
 
   # PATCH/PUT /file_upload/1
