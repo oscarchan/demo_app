@@ -39,6 +39,12 @@ $(function(){
         // force iframe transport for testing
         forceIframeTransport: true,
         done: successFunction,
+
+        accepts: {
+            text: 'text/html',
+            json: 'application/json'
+        },
+
         fail: failFunction,
         add: function(e, data) {
             var self = this;
