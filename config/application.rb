@@ -58,6 +58,26 @@ module DemoApp
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    # controller specific assets require special precompilation inclusion
+    # http://guides.rubyonrails.org/asset_pipeline.html#controller-specific-assets
+    config.assets.precompile << Proc.new do |path|
+      if path =~ /\.(scss|css|js)\z/
+        full_path = Rails.application.assets.resolve(path).to_path
+        app_assets_path = Rails.root.join('app', 'assets').to_path
+        if full_path.starts_with? app_assets_path
+          puts "including asset: " + full_path
+          true
+        else
+          puts "excluding asset: " + full_path
+          false
+        end
+      else
+        false
+      end
+    end
+
+
+
     config.action_dispatch.default_headers.merge!({
                                                     'Access-Control-Allow-Origin' => '*',
                                                     'Access-Control-Request-Method' => '*'
