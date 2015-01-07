@@ -13,7 +13,8 @@ DemoApp::Application.configure do
   config.serve_static_assets = true
 
   # Compress JavaScripts and CSS
-  config.assets.compress = true
+  # TODO: leverage source map for prod debugging test instead of disabled compression
+  config.assets.compress = false
 
   # Sprockets 2.x source map debugging
   config.assets.debug = true
