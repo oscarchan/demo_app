@@ -15,6 +15,9 @@ DemoApp::Application.configure do
   # Compress JavaScripts and CSS
   config.assets.compress = true
 
+  # Sprockets 2.x source map debugging
+  config.assets.debug = true
+
   # Don't fallback to assets pipeline if a precompiled asset is missed
   config.assets.compile = false
 
