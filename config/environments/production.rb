@@ -75,5 +75,5 @@ DemoApp::Application.configure do
   config.eager_load = true
 
   # config.assets.js_compressor = :uglifier
-  config.assets.js_compressor = NoCompression
+  config.assets.js_compressor = NoCompression.new
 end
