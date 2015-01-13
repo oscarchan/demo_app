@@ -31,13 +31,23 @@ $(function(){
             form.find("input:file").trigger('click');
         });
 */
+    var dataType = 'json',
+        forceIframeTransport = false;
+
+    var file_api_support = $("<input type='file'/>").get(0).files !== undefined;
+
+    file_api_support = false;
+    if(! file_api_support) {
+        dataType = 'text';
+        forceIframeTransport = true;
+    }
 
     form.fileupload({
-        dataType: 'text',
+        dataType: dataType,
         autoUpload: false,
 
         // force iframe transport for testing
-        forceIframeTransport: true,
+        forceIframeTransport: forceIframeTransport,
         done: successFunction,
 
         accepts: {
