@@ -9,7 +9,7 @@ class FileUploadForm
     IFRAME = :iframe
   end
 
-  attr_accessor :file, :upload_type
+  attr_accessor :file, :upload_type, :file_content
 
   def self.model_name
     ActiveModel::Name.new(self, nil, "FileUploadForm")
@@ -19,11 +19,6 @@ class FileUploadForm
     super
     @upload_type ||= UploadType::JQUERY_FILE_UPLOAD
     @file_content ||= []
-  end
-
-
-  def file_content
-    @file_content
   end
 
   def submit(params)
