@@ -1,0 +1,22 @@
+<% content_for :javascript do %>
+  <!-- works -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+  <!-- works !! -->
+  <!--<script src="https://www.localmonkey.com/addressbook/smassets/smlib.ui/1.0.19/js/lib/jquery-1.9.1.js"></script>-->
+
+  <%#= javascript_include_tag "jquery.js" %>
+
+  <script>
+    $(function() {
+      // force cross domain issue on sub domain
+      document.domain = document.domain.split(".").slice(1).join(".");
+    });
+  </script>
+
+<% end %>
+
+<textarea><%= JSON.pretty_generate(@file_upload_form.file_content) %></textarea>
+
+
+

@@ -1,5 +1,6 @@
 class FileUploadController < ApplicationController
   # before_action :set_jquery_form, only: [:show, :edit, :update, :destroy]
+  protect_from_forgery :except => :create
 
 
   # GET /file_upload/1
@@ -17,18 +18,60 @@ class FileUploadController < ApplicationController
 
   # POST /file_upload
   def create
-    @file_upload_form = FileUploadForm.new(params[:file_upload])
-    form_auth_token = params[:authenticity_token]
-    @file_upload_form.submit(params)
 
+    hack = true;
 
-    result = { content: @file_upload_form.file_content }
-    session[:last_file_upload_result] = result
-    if request.headers['X-Requested-With'] == 'XMLHttpRequest'
+    if hack
+      result = {
+          status: 0,
+          data: {
+              duplicates: [],
+              invalids: [],
+              counts: {
+                  total_input_contacts: 1,
+                  bounced: 0,
+                  added_to_list: {},
+                  input_duplicate: 0,
+                  past_max: 0,
+                  invalid: 0,
+                  duplicate: 0,
+                  inactive: 0,
+                  optedout: 0,
+                  max: 2000000,
+                  added_to_book: 1,
+                  import_attempt: 1
+              },
+              import_session_id: 32209,
+              input_duplicates: []
+          }
+      }
+      @file_upload_form = FileUploadForm.new
+      @file_upload_form.file_content = result
+
+      session[:last_file_upload_result] = result
+
+      if request.headers['X-Requested-With'] == 'XMLHttpRequest'
         render json: result
+      else
+        render action: 'create_barebone', layout: 'application_barebone'
+        # render action: 'create'
+      end
     else
-      render action: 'create'
+      @file_upload_form = FileUploadForm.new(params[:file_upload])
+      @file_upload_form.submit(params)
+
+      result = { content: @file_upload_form.file_content }
+
+      session[:last_file_upload_result] = result
+
+      if request.headers['X-Requested-With'] == 'XMLHttpRequest'
+        render json: result
+      else
+        render action: 'create'
+      end
+
     end
+
   end
 
   def result
